@@ -1,0 +1,33 @@
+João Gabriel :)
+int soma_elementos(Node *head){
+  if (head == NULL) {
+    return 0;
+  }
+  return head->data+soma_elementos(head->next); 
+}
+
+int howmany(Node *head, int querry)
+{
+  if (head == NULL) {
+    return 0;
+  }
+  int contador;
+  if (head->data == querry){
+    return 1+howmany(head->next,querry);
+  }
+  return howmany(head->next,querry);
+}
+
+Node* remove_item(Node *head, int item){
+  if (head == NULL) {
+    return NULL;
+  }
+  
+  if (head->data == item) {
+    Node *result = head->next;
+    free(head);
+    return result;
+  }
+  head->next = remove_item(head->next,item);
+  return head;
+}
